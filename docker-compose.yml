@@ -1,0 +1,22 @@
+version: "3.8"
+services: 
+    producer_container:
+        image: image1
+        depends_on: 
+            - consumer_container
+        volumes: 
+            - /home/sayali_karnewar/Documents/follo/rabbitmq/producer:/producer_volume
+            
+        working_dir: /producer_volume
+        command: python3 -u producer.py #unbuffered o/p
+        network_mode: "host"
+        
+    consumer_container:
+        image: image1
+        volumes: 
+            - /home/sayali_karnewar/Documents/follo/rabbitmq/consumer1:/consumer_volume
+            
+        working_dir: /consumer_volume    
+        command: python3 -u consumer1.py
+        network_mode: "host"
+          
